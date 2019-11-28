@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,8 +32,13 @@ public class TokenController {
 	}
 	
 	@DeleteMapping("/{bearerToken}")
-	public String deleteAuthToken(@PathVariable String bearerToken) {
+	public String deleteToken(@PathVariable String bearerToken) {
 		service.deleteToken(bearerToken);
 		return "Token Deleted";
+	}
+	
+	@PutMapping("/{bearerToken}")
+	public String updateToken(@PathVariable String bearerToken) {
+		return service.updateBearerToken(bearerToken);
 	}
 }

@@ -14,7 +14,7 @@ public class Token{
 	@GeneratedValue
 	private long id;
 	private String username;
-	private String bearertoken;
+	private String bearerToken;
 	
 	public Token() {
 	}
@@ -22,7 +22,7 @@ public class Token{
 	public Token(long id, String username, String bearertoken) {
 		this.id = id;
 		this.username = username;
-		this.bearertoken = bearertoken;
+		this.bearerToken = bearertoken;
 	}
 
 	public long getId() {
@@ -42,11 +42,11 @@ public class Token{
 	}
 
 	public String getBearertoken() {
-		return bearertoken;
+		return bearerToken;
 	}
 
 	public void setBearertoken(String bearertoken) {
-		this.bearertoken = bearertoken;
+		this.bearerToken = bearertoken;
 	}
 	
 }
