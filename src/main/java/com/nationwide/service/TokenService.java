@@ -1,6 +1,5 @@
 package com.nationwide.service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,15 @@ public class TokenService {
 	public void deleteToken(String bearerToken) {
 		repo.delete(getByBearerToken(bearerToken));
 	}
-	
+
+	/**
+	 * Method receives the bearer token to be updated.<br>
+	 * A reference to the token containing this bearer token is created using the {@link #getByBearerToken} method.<br>
+	 * The {@link #randomString} method is then called to generate a new bearer token value.<br>
+	 * This new value is then assigned to the token.
+	 * @param bearerToken
+	 * @return Message to say if the token was not found or if it was updated
+	 */
 	public Token updateBearerToken(String bearerToken) {
 		Token token = getByBearerToken(bearerToken);
 		String bearertoken = randomString();
