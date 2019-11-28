@@ -21,6 +21,12 @@ public class TokenController {
 	@Autowired
 	private TokenService service;
 	
+	
+	/**
+	 * Takes in a String and calls the {@link #createToken(String)} method to create a new {@link Token}.
+	 * @param username
+	 * @return
+	 */
 	@PostMapping("/{username}")
 	public Token createToken(@PathVariable String username){
 		return service.createToken(username);
@@ -38,7 +44,7 @@ public class TokenController {
 	}
 	
 	@PutMapping("/{bearerToken}")
-	public String updateToken(@PathVariable String bearerToken) {
+	public Token updateToken(@PathVariable String bearerToken) {
 		return service.updateBearerToken(bearerToken);
 	}
 }
