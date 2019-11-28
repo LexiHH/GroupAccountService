@@ -32,6 +32,11 @@ public class TokenController {
 		return service.createToken(username);
 	}
 	
+	/**
+	 * Takes in GET request and {@link bearerToken} token in URL from client and sends to Service method.
+	 * @param bearerToken
+	 * @return returns either error message or Token JSON object.
+	 */
 	@GetMapping("/{bearerToken}")
 	public Token getToken(@PathVariable String bearerToken){
 		return service.getByBearerToken(bearerToken);
