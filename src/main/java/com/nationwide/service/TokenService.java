@@ -32,6 +32,19 @@ public class TokenService {
 		repo.delete(getByBearerToken(bearerToken));
 	}
 	
+	public String updateBearerToken(String bearerToken) {
+		Token token = getByBearerToken(bearerToken);
+		if(token==null) {
+			return "Token not found";
+		}
+		else {
+		String bearertoken = randomString();
+		token.setBearertoken(bearertoken);
+		repo.save(token);
+		return "Token Updated";
+		}
+	}
+	
 	public Token getByBearerToken(String bearerToken){
 		Token token = repo.findByBearerToken(bearerToken);
 		return token;
