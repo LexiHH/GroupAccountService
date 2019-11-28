@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nationwide.dto.RequestTokenDto;
+import com.nationwide.dto.ResponseTokenDto;
 import com.nationwide.persistence.domain.Token;
 import com.nationwide.service.TokenService;
 
@@ -28,8 +31,14 @@ public class TokenController {
 	 * @return
 	 */
 	@PostMapping("/{username}")
-	public Token createToken(@PathVariable String username){
-		return service.createToken(username);
+	public ResponseTokenDto createToken(@PathVariable String username){
+		Token createdToken = service.createToken(username);
+		
+		ResponseTokenDto responseToken = new ResponseTokenDto();
+		responseToken.setUsername(createdToken.getUsername());
+		responseToken.setBearerToken(createdToken.getBearertoken());
+		return responseToken;
+		
 	}
 	
 	/**
@@ -38,8 +47,13 @@ public class TokenController {
 	 * @return returns either error message or Token JSON object.
 	 */
 	@GetMapping("/{bearerToken}")
-	public Token getToken(@PathVariable String bearerToken){
-		return service.getByBearerToken(bearerToken);
+	public ResponseTokenDto getToken(@PathVariable String bearerToken){
+		Token createdToken = service.getByBearerToken(bearerToken);
+		
+		ResponseTokenDto responseToken = new ResponseTokenDto();
+		responseToken.setUsername(createdToken.getUsername());
+		responseToken.setBearerToken(createdToken.getBearertoken());
+		return responseToken;
 	}
 	
 	@DeleteMapping("/{bearerToken}")
@@ -49,7 +63,12 @@ public class TokenController {
 	}
 	
 	@PutMapping("/{bearerToken}")
-	public Token updateToken(@PathVariable String bearerToken) {
-		return service.updateBearerToken(bearerToken);
+	public ResponseTokenDto udpateToken(@PathVariable String bearerToken){
+		Token createdToken = service.updateBearerToken(bearerToken);
+		
+		ResponseTokenDto responseToken = new ResponseTokenDto();
+		responseToken.setUsername(createdToken.getUsername());
+		responseToken.setBearerToken(createdToken.getBearertoken());
+		return responseToken;
 	}
 }
