@@ -1,5 +1,8 @@
 package com.nationwide.service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +24,17 @@ public class TokenService {
 	}
 	
 	private String randomString() {
-		return "random";
+		String bearertoken = UUID.randomUUID().toString();
+		return bearertoken;
 	}
 	
+	public void deleteToken(String bearerToken) {
+		repo.delete(getByBearerToken(bearerToken));
+	}
+	
+	public Token getByBearerToken(String bearerToken){
+		Token token = repo.findByBearerToken(bearerToken);
+		return token;
+	}
+
 }
