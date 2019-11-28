@@ -58,7 +58,12 @@ public class TokenService {
 		return token;
 	}
 
-	
+	/**
+	 * method takes in {@link bearerToken} and checks against records in DB.
+	 * Throws error if token not found.
+	 * @param bearerToken
+	 * @return Either error message(String) or returns {@link Token} JSON object to GET method in controller.
+	 */
 	public Token getByBearerToken(String bearerToken){
 		Token token = repo.findByBearerToken(bearerToken).orElseThrow(() -> new RuntimeException("Bearer token not found"));
 		return token;
