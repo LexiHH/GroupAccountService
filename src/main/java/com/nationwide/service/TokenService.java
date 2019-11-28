@@ -46,7 +46,7 @@ public class TokenService {
 	}
 	
 	public Token getByBearerToken(String bearerToken){
-		Token token = repo.findByBearerToken(bearerToken);
+		Token token = repo.findByBearerToken(bearerToken).orElseThrow(() -> new RuntimeException("Bearer token not found"));
 		return token;
 	}
 
