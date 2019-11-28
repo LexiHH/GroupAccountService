@@ -7,6 +7,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "Token")
 public class Token{
 	
 	@Id
